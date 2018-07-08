@@ -2,7 +2,7 @@
 * @Author: Winfred
 * @Date:   2018-07-06 22:37:03
 * @Last Modified by:   Winfred
-* @Last Modified time: 2018-07-08 18:35:47
+* @Last Modified time: 2018-07-08 21:18:42
 */
 
 'use strict';
@@ -10,7 +10,7 @@
 (function(window){
 	const template =`
  <div>
-    <h1 class="page-header">ccc</h1>
+    <h1 class="page-header">Home</h1>
     <div class="row placeholders">
       <div class="col-xs-6 col-sm-3 placeholder">
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">

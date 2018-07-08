@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"browser-sync start --server --files \"index.html,css/*.css,js/**/*.js\""
+    "dev": "browser-sync start --server --port 5000 --files \"index.html,css/*.css,js/**/*.js\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "^3.3.7",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"

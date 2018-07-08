@@ -2,7 +2,7 @@
  * @Author: Winfred
  * @Date:   2018-07-07 19:36:38
  * @Last Modified by:   Winfred
- * @Last Modified time: 2018-07-08 15:31:30
+ * @Last Modified time: 2018-07-08 21:21:10
  */
 
 // 'use strict';
@@ -26,7 +26,7 @@ exports.query = (req, res) => {
 		const collection = db.collection('documents');
 		collection.find({}).toArray(function(err, docs) {
 			assert.equal(err, null);
-			res.status(200).json(docs)
+			res.status(200).set({"Access-Control-Allow-Origin":"*"}).json(docs)
 			client.close();
 		});
 	});
@@ -63,6 +63,7 @@ exports.update = (req, res) => {
 			$set: req.body
 		}, function(err, result) {
 			assert.equal(err, null);
+			res.json("Updated Complete")
 			console.log("Updated Complete");
 		});
 	});
@@ -98,6 +99,7 @@ exports.delete = (req, res) => {
 			assert.equal(err, null);
 			assert.equal(1, result.result.n);
 			console.log("Removed Completed");
+			res.json('ok')
 			client.close();
 		});
 	});
