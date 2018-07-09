@@ -2,7 +2,7 @@
 * @Author: Winfred
 * @Date:   2018-07-07 19:36:46
 * @Last Modified by:   Winfred
-* @Last Modified time: 2018-07-09 15:03:51
+* @Last Modified time: 2018-07-09 16:27:32
 */
 
 'use strict';
@@ -35,4 +35,4 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 app.use(router)
-app.listen(3000,()=>{console.log('running...')})
+app.listen(3000,()=>{console.log('3000,running...')})

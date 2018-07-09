@@ -2,7 +2,7 @@
  * @Author: Winfred
  * @Date:   2018-07-07 19:36:38
  * @Last Modified by:   Winfred
- * @Last Modified time: 2018-07-09 13:31:36
+ * @Last Modified time: 2018-07-09 16:15:25
  */
 
 // 'use strict';
@@ -28,7 +28,7 @@ exports.query = (req, res) => {
 			assert.equal(err, null);
 			res
 				.status(200)
-				.set({"Access-Control-Allow-Origin":"*"})
+				// .set({"Access-Control-Allow-Origin":"*"})
 				.json(docs)
 			client.close();
 		});
@@ -47,8 +47,8 @@ exports.creat = (req, res) => {
 			}
 			res
 				.status(201)
-				.set({"Access-Control-Allow-Origin":"*"})
-				.set({"Access-Control-Allow-Methods":"*"})
+				// .set({"Access-Control-Allow-Origin":"*"})
+				// .set({"Access-Control-Allow-Methods":"*"})
 				.json(result.ops[0])
 			client.close();
 		});

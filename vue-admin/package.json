@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "browser-sync start --server --port 5000 --files \"index.html,css/*.css,js/**/*.js\""
+    "bs-server": "browser-sync start --server --port 5000 --files \"index.html,css/*.css,js/**/*.js\"",
+    "predev": "npm install",
+    "dev": "node browser-sync.config.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "browser-sync": "^2.24.5"
+    "browser-sync": "^2.24.5",
+    "http-proxy-middleware": "^0.18.0"
   }
 }

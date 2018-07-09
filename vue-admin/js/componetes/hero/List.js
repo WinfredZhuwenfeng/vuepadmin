@@ -2,7 +2,7 @@
 * @Author: Winfred
 * @Date:   2018-07-08 17:32:15
 * @Last Modified by:   Winfred
-* @Last Modified time: 2018-07-08 23:18:13
+* @Last Modified time: 2018-07-09 16:55:50
 */
 
 'use strict';
@@ -59,13 +59,13 @@
     },
     created(){
         //请求数据
-      axios.get('http://127.0.0.1:3000/heros/', {
+      axios.get('http://127.0.0.1:8080/heros/', {
         params: {
         }
       })
       .then(response => {
         this.heros = response.data
-        console.log(this)
+        console.log(1111)
       })
       // .then(function(response) {
       //   this.heros = response.data
