@@ -2,7 +2,7 @@
  * @Author: Winfred
  * @Date:   2018-07-07 19:36:38
  * @Last Modified by:   Winfred
- * @Last Modified time: 2018-07-08 21:21:10
+ * @Last Modified time: 2018-07-09 13:31:36
  */
 
 // 'use strict';
@@ -26,9 +26,33 @@ exports.query = (req, res) => {
 		const collection = db.collection('documents');
 		collection.find({}).toArray(function(err, docs) {
 			assert.equal(err, null);
-			res.status(200).set({"Access-Control-Allow-Origin":"*"}).json(docs)
+			res
+				.status(200)
+				.set({"Access-Control-Allow-Origin":"*"})
+				.json(docs)
 			client.close();
 		});
+	});
+}
+	//创建
+exports.creat = (req, res) => {
+	MongoClient.connect(url, function(err, client) {
+		assert.equal(null, err);
+		const db = client.db(dbName);
+		const collection = db.collection('documents');
+		collection.insertOne(req.body, function(err, result) {
+			assert.equal(err, null);
+			if(err){
+				console.log(err.message)
+			}
+			res
+				.status(201)
+				.set({"Access-Control-Allow-Origin":"*"})
+				.set({"Access-Control-Allow-Methods":"*"})
+				.json(result.ops[0])
+			client.close();
+		});
+
 	});
 }
 	//查询一个
@@ -63,28 +87,14 @@ exports.update = (req, res) => {
 			$set: req.body
 		}, function(err, result) {
 			assert.equal(err, null);
-			res.json("Updated Complete")
+			res
+			.status(201)
+			.json("Updated Complete")
 			console.log("Updated Complete");
 		});
 	});
 }
-	//创建
-exports.creat = (req, res) => {
-	MongoClient.connect(url, function(err, client) {
-		assert.equal(null, err);
-		const db = client.db(dbName);
-		const collection = db.collection('documents');
-		collection.insertMany([req.body], function(err, result) {
-			assert.equal(err, null);
-			// assert.equal(3, result.result.n);
-			// assert.equal(3, result.ops.length);
-			console.log("Inserted 3 documents into the collection");
-			res.json(result.ops[0])
-			client.close();
-		});
 
-	});
-}
 	//删除
 exports.delete = (req, res) => {
 	MongoClient.connect(url, function(err, client) {
@@ -99,7 +109,9 @@ exports.delete = (req, res) => {
 			assert.equal(err, null);
 			assert.equal(1, result.result.n);
 			console.log("Removed Completed");
-			res.json('ok')
+			res
+			.status(204)
+			.json('ok')
 			client.close();
 		});
 	});

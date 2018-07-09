@@ -2,7 +2,7 @@
 * @Author: Winfred
 * @Date:   2018-07-08 17:32:15
 * @Last Modified by:   Winfred
-* @Last Modified time: 2018-07-08 21:52:43
+* @Last Modified time: 2018-07-08 23:18:13
 */
 
 'use strict';
@@ -11,6 +11,7 @@
  <div>
 
     <h2 class="sub-header">英雄管理</h2>
+    <router-link to="/heros/create" class="btn btn-success">添加英雄</router-link>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -64,7 +65,12 @@
       })
       .then(response => {
         this.heros = response.data
+        console.log(this)
       })
+      // .then(function(response) {
+      //   this.heros = response.data
+      //   console.log(this)
+      // })
       .catch(function (error) {
         console.log(error);
       });
