@@ -2,7 +2,7 @@
 * @Author: Winfred
 * @Date:   2018-07-08 17:32:15
 * @Last Modified by:   Winfred
-* @Last Modified time: 2018-07-09 16:55:50
+* @Last Modified time: 2018-07-09 23:23:11
 */
 
 'use strict';
@@ -26,6 +26,11 @@
             <td>{{ index+1 }}</td>
             <td>{{ hero.name }}</td>
             <td>{{ hero.job }}</td>
+            <td>
+              <router-link :to="'/heros/show/'+hero._id">查看</router-link>
+              <router-link :to="'/heros/update/'+hero._id">编辑</router-link>
+              <a href="javascript:;">删除</a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -58,14 +63,14 @@
       }
     },
     created(){
+        // 在 created 中是最早拿到 data 数据的生命钩子
         //请求数据
-      axios.get('http://127.0.0.1:8080/heros/', {
+      axios.get('/api/heros/', {
         params: {
         }
       })
       .then(response => {
         this.heros = response.data
-        console.log(1111)
       })
       // .then(function(response) {
       //   this.heros = response.data
@@ -75,6 +80,8 @@
         console.log(error);
       });
     }
+    
+
 	}
 	window.HeroList = HeroList
 })(window)

@@ -2,7 +2,7 @@
 * @Author: Winfred
 * @Date:   2018-07-09 15:52:06
 * @Last Modified by:   Winfred
-* @Last Modified time: 2018-07-09 16:55:53
+* @Last Modified time: 2018-07-09 23:35:40
 */
 
 'use strict';
@@ -12,7 +12,7 @@ var proxy = require('http-proxy-middleware') // require('http-proxy-middleware')
 /**
  * Configure proxy middleware
  */
-var jsonPlaceholderProxy = proxy('http://127.0.0.1:8080', {
+var jsonPlaceholderProxy = proxy('/api', {
   target: 'http://127.0.0.1:3000',
   changeOrigin: true, // for vhosted sites, changes host header to match to target's host
   logLevel: 'debug',
@@ -26,8 +26,7 @@ var jsonPlaceholderProxy = proxy('http://127.0.0.1:8080', {
  */
 browserSync.init({
   server: {
-    baseDir: './',
-    
+    baseDir: './',    
     middleware: [jsonPlaceholderProxy]
   },
   port: 8080,
@@ -35,4 +34,3 @@ browserSync.init({
 })
 
 console.log('[DEMO] Server: listening on port 8080')
-console.log('[DEMO] Opening: http://localhost:8080/users')

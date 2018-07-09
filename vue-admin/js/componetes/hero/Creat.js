@@ -2,7 +2,7 @@
  * @Author: Winfred
  * @Date:   2018-07-08 17:32:27
  * @Last Modified by:   Winfred
- * @Last Modified time: 2018-07-09 16:56:15
+ * @Last Modified time: 2018-07-09 21:57:25
  */
 
 'use strict';;
@@ -48,7 +48,7 @@
         	5.显示list
         	 */
             create() {
-            	axios.post('http://127.0.0.1:8080/heros',this.hero)
+            	axios.post('/api/heros',this.hero)
 						  .then( response =>{
 						  	console.log(111)
 

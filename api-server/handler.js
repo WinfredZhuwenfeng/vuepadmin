@@ -2,7 +2,7 @@
  * @Author: Winfred
  * @Date:   2018-07-07 19:36:38
  * @Last Modified by:   Winfred
- * @Last Modified time: 2018-07-09 16:15:25
+ * @Last Modified time: 2018-07-09 23:14:33
  */
 
 // 'use strict';
@@ -57,15 +57,18 @@ exports.creat = (req, res) => {
 }
 	//查询一个
 exports.queryOne = (req, res) => {
+	const id = (req.params.id)
 	MongoClient.connect(url, function(err, client) {
-		assert.equal(null, err);
+		// assert.equal(null, err);
+		if(err){
+			console.log(err.message)
+		}
 		const db = client.db(dbName);
 		// Get the documents collection
 		const collection = db.collection('documents');
-		const id = new ObjectID(req.params.id)
 		console.log(id)
 		collection.find({
-			'_id': id
+			'_id': new ObjectID(id)
 		}).toArray(function(err, docs) {
 			assert.equal(err, null);
 			res.status(200).json(docs)
