@@ -2,7 +2,7 @@
 * @Author: Winfred
 * @Date:   2018-07-08 17:32:15
 * @Last Modified by:   Winfred
-* @Last Modified time: 2018-07-09 23:23:11
+* @Last Modified time: 2018-07-10 17:16:53
 */
 
 'use strict';
@@ -29,7 +29,7 @@
             <td>
               <router-link :to="'/heros/show/'+hero._id">查看</router-link>
               <router-link :to="'/heros/update/'+hero._id">编辑</router-link>
-              <a href="javascript:;">删除</a>
+              <a href="javascript:;" @click.prevent="remove(hero._id)">删除</a>
             </td>
           </tr>
         </tbody>
@@ -62,23 +62,31 @@
       }]
       }
     },
+    methods:{
+      remove(id){
+        if(!confirm('Are you sure?')) return
+        axios.delete(`api/heros/${id}`)
+          .then(res => {
+            this.getHeros()
+          })
+          .catch(err=>{
+            console.log(err)
+          })
+      },
+      getHeros(){
+        axios.get('/api/heros/')
+          .then(response => {
+            this.heros = response.data
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    },
     created(){
         // 在 created 中是最早拿到 data 数据的生命钩子
         //请求数据
-      axios.get('/api/heros/', {
-        params: {
-        }
-      })
-      .then(response => {
-        this.heros = response.data
-      })
-      // .then(function(response) {
-      //   this.heros = response.data
-      //   console.log(this)
-      // })
-      .catch(function (error) {
-        console.log(error);
-      });
+        this.getHeros()
     }
     
 

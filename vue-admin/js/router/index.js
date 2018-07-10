@@ -2,7 +2,7 @@
 * @Author: Winfred
 * @Date:   2018-07-06 22:40:24
 * @Last Modified by:   Winfred
-* @Last Modified time: 2018-07-09 22:35:16
+* @Last Modified time: 2018-07-10 10:38:26
 */
 
 'use strict';
@@ -15,15 +15,16 @@
  */
 
 ;
-(function(window,VueRouter,Home, HeroList,HeroCreat,HeroShow){
+(function(window,VueRouter,Home, HeroList,HeroCreat,HeroShow,HeroUpdate){
 	const router = new VueRouter({
 		routes : [
 			{path:'/',component:Home},
 			{path:'/heros/create',component:HeroCreat},
 			{path:'/heros/show/:id',component:HeroShow},
+			{path:'/heros/update/:id',component:HeroUpdate},
 			{path:'/heros',component:HeroList}
 		],
 		linkActiveClass:'active'
 	})
 	window.router=router
-})(window,VueRouter, Home, HeroList,HeroCreat,HeroShow)
+})(window,VueRouter, Home, HeroList,HeroCreat,HeroShow,HeroUpdate)

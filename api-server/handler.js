@@ -2,7 +2,7 @@
  * @Author: Winfred
  * @Date:   2018-07-07 19:36:38
  * @Last Modified by:   Winfred
- * @Last Modified time: 2018-07-09 23:14:33
+ * @Last Modified time: 2018-07-10 11:36:21
  */
 
 // 'use strict';
@@ -57,7 +57,7 @@ exports.creat = (req, res) => {
 }
 	//查询一个
 exports.queryOne = (req, res) => {
-	const id = (req.params.id)
+	const id = new ObjectID(req.params.id)
 	MongoClient.connect(url, function(err, client) {
 		// assert.equal(null, err);
 		if(err){
@@ -66,9 +66,9 @@ exports.queryOne = (req, res) => {
 		const db = client.db(dbName);
 		// Get the documents collection
 		const collection = db.collection('documents');
-		console.log(id)
+		// const id = (id)
 		collection.find({
-			'_id': new ObjectID(id)
+			'_id': id
 		}).toArray(function(err, docs) {
 			assert.equal(err, null);
 			res.status(200).json(docs)
@@ -78,17 +78,19 @@ exports.queryOne = (req, res) => {
 }
 	//更新
 exports.update = (req, res) => {
+	const id = new ObjectID(req.params.id)
+	console.log(req.body._id)
+	delete req.body._id
+	console.log(id)
+	console.log(req.body)
 	MongoClient.connect(url, function(err, client) {
 		assert.equal(null, err);
 		const db = client.db(dbName);
 		const collection = db.collection('documents');
-		const id = new ObjectID(req.params.id)
-		console.log(id)
-		collection.updateOne({
-			'_id': id
-		}, {
-			$set: req.body
-		}, function(err, result) {
+		console.log(id+'update')
+		// const id = new ObjectID(id)
+		collection.updateOne({'_id': id}, {$set: req.body}, 
+			function(err, result) {
 			assert.equal(err, null);
 			res
 			.status(201)
