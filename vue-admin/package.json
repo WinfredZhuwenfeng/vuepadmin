@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bs-server": "browser-sync start --server --port 5000 --files \"index.html,css/*.css,js/**/*.js\"",
+    "predev":"npm install",
     "dev": "node browser-sync.config.js"
   },
   "keywords": [],
